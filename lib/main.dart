@@ -38,124 +38,148 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const Center(
-          child: Text(
-            "Subscription Checkout",
-            style: TextStyle(color: Colors.black87, fontSize: 16),
-          ),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 15),
-            child: Icon(
-              Icons.close,
-              color: Colors.black87,
+        title: Stack(
+          children: const [
+            Center(
+              child: Text(
+                "Subscription Checkout",
+                style: TextStyle(color: Colors.black87, fontSize: 16),
+              ),
             ),
-          )
-        ],
+            Positioned(
+              child: Icon(
+                Icons.close,
+                color: Colors.black,
+              ),
+              right: 0,
+              top: -2,
+            )
+          ],
+        ),
       ),
       body: Container(
         color: Colors.white,
         padding: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
-        child: ListView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // const Placeholder(
-            //   fallbackHeight: 150,
-            // ),
-            const Image(image: AssetImage("assets/sample.png")),
-            Row(
-              children: [
-                const Text(
-                  "Go",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                TextButton(
-                    onPressed: () {},
-                    child: TextButton(
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.all<EdgeInsets>(
-                              const EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 20)),
-                          textStyle: MaterialStateProperty.all<TextStyle>(
-                              const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20)),
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              Theme.of(context).primaryColor)),
-                      onPressed: () {},
-                      child: const Text("PRO"),
-                    ))
-              ],
-            ),
-            const Text(
-              "Start Your Free 14 Day SidelineSwap Pro Trial Now!",
-              style: TextStyle(color: Colors.black54, fontSize: 18),
-            ),
-            const PaymentMethod(),
-            Row(
-              children: [
-                const Expanded(child: Text("Billing Cycle")),
-                Row(
-                  children: [
-                    const Text("Monthly"),
-                    Switch(
-                      value: true,
-                      onChanged: (value) => value,
-                      activeColor: Theme.of(context).primaryColor,
+            Expanded(
+              child: ListView(
+                children: [
+                  // const Placeholder(
+                  //   fallbackHeight: 150,
+                  // ),
+                  const Image(image: AssetImage("assets/sample.png")),
+                  Row(
+                    children: [
+                      const Text(
+                        "Go",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                      TextButton(
+                          onPressed: () {},
+                          child: TextButton(
+                            style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                    const EdgeInsets.symmetric(
+                                        vertical: 0, horizontal: 20)),
+                                textStyle: MaterialStateProperty.all<TextStyle>(
+                                    const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20)),
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Theme.of(context).primaryColor)),
+                            onPressed: () {},
+                            child: const Text("PRO"),
+                          ))
+                    ],
+                  ),
+                  const Text(
+                    "Start Your Free 14 Day SidelineSwap Pro Trial Now!",
+                    style: TextStyle(color: Colors.black54, fontSize: 18),
+                  ),
+                  const PaymentMethod(),
+                  Row(
+                    children: [
+                      const Expanded(child: Text("Billing Cycle")),
+                      Row(
+                        children: [
+                          const Text("Monthly"),
+                          Switch(
+                            value: true,
+                            onChanged: (value) => value,
+                            activeColor: Theme.of(context).primaryColor,
+                          ),
+                          const Text("Annually"),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const ExpenseTile(
+                    title: Text("SidelineSwap Pro Subscription"),
+                    trailing: Text("\$19.99"),
+                    subtitle: Text("(Monthly)"),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const ExpenseTile(
+                    title: Text("SidelineSwap Pro Subscription"),
+                    trailing: Text("\$1.00"),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Divider(),
+                  const ExpenseTile(
+                    title: Text(
+                      "Total",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    const Text("Annually"),
-                  ],
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const ExpenseTile(
-              title: Text("SidelineSwap Pro Subscription"),
-              trailing: Text("\$19.99"),
-              subtitle: Text("(Monthly)"),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const ExpenseTile(
-              title: Text("SidelineSwap Pro Subscription"),
-              trailing: Text("\$1.00"),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(),
-            const ExpenseTile(
-              title: Text(
-                "Total",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              trailing: Text(
-                "\$20.99",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    trailing: Text(
+                      "\$20.99",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Agreements(),
+                  const AgreeBox(),
+                ],
               ),
             ),
-            const Agreements(),
-            const AgreeBox(),
-            OutlinedButton(
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.green.shade900),
-                  padding: MaterialStateProperty.all(const EdgeInsets.all(15))),
-              onPressed: () {},
-              child: const Text(
-                "Start Free Trial Now!",
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-            )
+            const TrialButton()
           ],
         ),
+      ),
+    );
+  }
+}
+
+class TrialButton extends StatelessWidget {
+  const TrialButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.green.shade900),
+          padding: MaterialStateProperty.all(const EdgeInsets.all(15))),
+      onPressed: () {},
+      child: const Text(
+        "Start Free Trial Now!",
+        style: TextStyle(
+            fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
       ),
     );
   }
