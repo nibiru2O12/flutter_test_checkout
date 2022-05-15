@@ -43,7 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: Text(
                 "Subscription Checkout",
-                style: TextStyle(color: Colors.black87, fontSize: 16),
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Positioned(
@@ -125,20 +128,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   const ExpenseTile(
                     title: Text("SidelineSwap Pro Subscription"),
-                    trailing: Text("\$19.99"),
+                    trailing: Text("\$19.99",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text("(Monthly)"),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   const ExpenseTile(
-                    title: Text("SidelineSwap Pro Subscription"),
-                    trailing: Text("\$1.00"),
+                    title: Text("Sales Tax"),
+                    trailing: Text(
+                      "\$1.00",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   const Divider(),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   const ExpenseTile(
                     title: Text(
                       "Total",
@@ -173,6 +183,8 @@ class TrialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
           backgroundColor: MaterialStateProperty.all(Colors.green.shade900),
           padding: MaterialStateProperty.all(const EdgeInsets.all(15))),
       onPressed: () {},
@@ -296,13 +308,22 @@ class ExpenseTile extends StatelessWidget {
     final _sub = subtitle;
     final _trail = trailing;
     return Container(
-      child: Column(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [Expanded(child: title), if (_trail != null) _trail],
-          ),
-          if (_sub != null) _sub,
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              title,
+              if (_sub != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: _sub,
+                )
+            ],
+          )),
+          if (_trail != null) _trail
         ],
       ),
     );
